@@ -5,6 +5,7 @@ import (
 	"strconv"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 )
 
 type Book struct {
@@ -20,6 +21,13 @@ func main() {
 
 	// ** New instant of fiber app
 	app := fiber.New()
+
+	// ** Apply CORS(Cross-origin) middleware
+	app.Use(cors.New(cors.Config{
+		AllowOrigins: "*", // Adjust this to be more restrictive if needed
+		AllowMethods: "GET,POST,HEAD,PUT,DELETE,PATCH",
+		AllowHeaders: "Origin, Content-Type, Accept",
+	}))
 
 	// ** Add mock data to books
 	books = append(books, Book{ID: 1, Title: "Harry Potter", Author: "J.K Rolling"})
