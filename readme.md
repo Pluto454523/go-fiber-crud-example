@@ -2,7 +2,7 @@
 
 ### install nodemon using nodejs
 ```bash
-node i -g nodemon
+npm i -g nodemon
 ```
 
 ### Run using nodemon
