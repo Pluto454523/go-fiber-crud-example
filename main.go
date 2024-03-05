@@ -40,6 +40,9 @@ func main() {
 	app.Put("books/:id", updateBook)
 	app.Delete("books/:id", deleteBook)
 
+	// ** Route upload image
+	app.Post("/upload", uploadImage)
+
 	// ** Listen app to port 3000
 	app.Listen(":3000")
 }
@@ -135,4 +138,21 @@ func deleteBook(c *fiber.Ctx) error {
 	}
 
 	return c.Status(fiber.StatusNotFound).SendString(fmt.Sprintf("book id %v not found", bookId))
+}
+
+// ** Upload file
+func uploadImage(c *fiber.Ctx) error {
+	// Read file from request
+	file, err := c.FormFile("image")
+	if err != nil {
+		return c.Status(fiber.StatusBadRequest).SendString(err.Error())
+	}
+
+	// Save the file to the server
+	err = c.SaveFile(file, "./uploads/"+file.Filename)
+	if err != nil {
+		return c.Status(fiber.StatusInternalServerError).SendString(err.Error())
+	}
+
+	return c.SendString("File uploaded successfully: " + file.Filename)
 }
