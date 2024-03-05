@@ -1,11 +1,11 @@
 # **GO-FIBER-CRUD-EXAMPLE**
 
-### install nodemon using nodejs
+### install ☁️ Air - Live reload for Go apps.
 ```bash
-npm i -g nodemon
+go install github.com/cosmtrek/air@latest
 ```
 
-### Run using nodemon
+### usage this command to run without air config.
 ```bash
-nodemon --exec "go run" main.go
+air --build.cmd "go build -o build\main.exe ." --build.bin ".\build\main.exe"
 ```
