@@ -5,7 +5,14 @@
 go install github.com/cosmtrek/air@latest
 ```
 
-### usage this command to run without air config.
-```bash
-air --build.cmd "go build -o build\main.exe ." --build.bin ".\build\main.exe"
+### Which a commands to run with envoriments.
+
+## Window command.
+```shell
+./run.bat
+```
+
+## Unix command.
+```shell
+./run.sh
 ```

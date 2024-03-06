@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"os"
 	"strconv"
 
 	"github.com/gofiber/fiber/v2"
@@ -43,8 +44,11 @@ func main() {
 	// ** Route upload image
 	app.Post("/upload", uploadImage)
 
+	// ** Get Envoriment form .env file
+	port := os.Getenv("PORT")
+
 	// ** Listen app to port 3000
-	app.Listen(":3000")
+	app.Listen(":" + port)
 }
 
 // ** Read all
