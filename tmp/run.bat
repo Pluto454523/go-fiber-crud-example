@@ -1,0 +1,1 @@
+@FOR /F "tokens=*" %%a IN ('FINDSTR /V /B # .env') DO SET "%%a"
