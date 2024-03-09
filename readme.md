@@ -1,44 +1,45 @@
 # **GO-FIBER-CRUD-EXAMPLE**
 
-## Install and Usage
+## Install and Usage Air (How reload)
 
 ### ☁️ Air - Live reload for Go apps.
-First, ensure you have Air installed. You can install it using:
+1. Install `Air - Live reload` with Go installer
 ```bash
 go install github.com/cosmtrek/air@latest
 ```
+2. Initialize `.air.toml` file for configuration
+```bash
+air init
+```
 
-### Windows:
-- Create a batch script (let's name it run.bat) with the following content:
+## Setup ☁️ Air configuration.
+
+
+### On **`Windows`**
+1. Create a batch script (run.bat) with the following content
 ```bash
 ## Read .env file and set envoriments.
 @FOR /F "tokens=*" %%a IN ('FINDSTR /V /B "#" .env') DO SET "%%a"
-
-## Run air and argurment without air config.
-air --build.cmd "go build -o build\main.exe ." --build.bin ".\build\main.exe" -tmp_dir ".\build\"
-```
-- Run the script
-```bash
-./run.bat
 ```
 
-
-### Unix:
-- Create a bash script (let's name it run.sh) with the following content:
-```bash
-## Read .env file and set envoriments.
-export $(grep -v '^#' .env | xargs);
-
-## Run air and argurment without air config.
-air --build.cmd "go build -o build/main ." --build.bin "./build/main" -tmp_dir "./build"
+2. Add **`./run.bat && ./build/main.exe`** unti bun un `.air.toml`
+```toml
+bin = "./run.bat && ./build/main.exe"
 ```
 
-- Make the script executable:
+3. Run air live reload
 ```bash
-chmod +x run.sh
+air
 ```
 
-- Run the script
+
+### On **`Linux`** or **`Mac OS X`**
+1. Add **`export $(grep -v '^#' .env | xargs);`** into bin  in`.air.toml`
+```toml
+bin = ";export $(grep -v '^#' .env | xargs); ./build/main"
+```
+
+2. Run air live reload
 ```bash
-./run.sh
+air
 ```
